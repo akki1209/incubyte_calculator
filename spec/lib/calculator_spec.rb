@@ -1,4 +1,5 @@
 require_relative '../../lib/calculator'
+require_relative '../../lib/exceptions/calculator_exceptions'
 
 describe Calculator do
   describe 'calculator logics' do
@@ -52,6 +53,20 @@ describe Calculator do
               it 'returns should return the correct sum of numbers' do
                 expect(described_class.add('//;\n1;2')).to eq(3)
               end
+            end
+          end
+        end
+
+        context 'when string contains negative values' do
+          context 'when single negative integer available in string' do
+            it 'should raise an error' do
+              expect { described_class.add('7,-2') }.to raise_error(Exceptions::CalculatorExceptions::NegativeNumberError, "Negative numbers not allowed -2")
+            end
+          end
+
+          context 'when multiple negative integer available in string' do
+            it 'should raise an error' do
+              expect { described_class.add('7,-3;-6') }.to raise_error(Exceptions::CalculatorExceptions::NegativeNumberError, "Negative numbers not allowed -3, -6")
             end
           end
         end
