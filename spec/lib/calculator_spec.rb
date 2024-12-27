@@ -28,6 +28,32 @@ describe Calculator do
               end
             end
           end
+
+          context 'when numbers are separated with other delimiters' do
+            context 'when numbers are separated with \n' do
+              it 'returns should return the correct sum of numbers' do
+                expect(described_class.add('7\n2')).to eq(9)
+              end
+            end
+
+            context 'when numbers are separated with \n and comma' do
+              it 'returns should return the correct sum of numbers' do
+                expect(described_class.add('7\n2,3')).to eq(12)
+              end
+            end
+
+            context 'when numbers are separated with /n' do
+              it 'returns should return the correct sum of numbers' do
+                expect(described_class.add('7/n2/n4')).to eq(13)
+              end
+            end
+
+            context 'when numbers are separated with double slash, \n, ; and comma' do
+              it 'returns should return the correct sum of numbers' do
+                expect(described_class.add('//;\n1;2')).to eq(3)
+              end
+            end
+          end
         end
       end
     end

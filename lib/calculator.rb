@@ -1,4 +1,8 @@
+# Calculator.add('1, 2')
+
 class Calculator
+  SPLIT_REGEX = /-?\d+/
+
   class << self
     def add(numbers)
       return 0 if numbers.empty?
@@ -10,7 +14,7 @@ class Calculator
     private
 
     def extract_numbers(num_string)
-      num_string.split(',').map(&:to_i)
+      num_string.scan(SPLIT_REGEX).map(&:to_i)
     end
   end
 end
