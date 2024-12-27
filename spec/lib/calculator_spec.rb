@@ -15,6 +15,20 @@ describe Calculator do
             expect(described_class.add('7')).to eq(7)
           end
         end
+
+        context 'when string contains multiple numbers available in the passed string' do
+          context 'when numbers are comma separated' do
+            it 'returns should return the correct sum of numbers' do
+              expect(described_class.add('7,2')).to eq(9)
+            end
+
+            context 'when string contains space after comma' do
+              it 'returns should return the correct sum of numbers' do
+                expect(described_class.add('7, 2, 3')).to eq(12)
+              end
+            end
+          end
+        end
       end
     end
   end

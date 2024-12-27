@@ -3,7 +3,14 @@ class Calculator
     def add(numbers)
       return 0 if numbers.empty?
 
-      return numbers.to_i
+      extracted_numbers = extract_numbers(numbers)
+      extracted_numbers.sum
+    end
+
+    private
+
+    def extract_numbers(num_string)
+      num_string.split(',').map(&:to_i)
     end
   end
 end
